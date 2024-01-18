@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vegas_flutter_connectivity/wifi/wifi_notifier.dart';
 import 'package:vegas_flutter_connectivity/wifi/wifi_scan_get.dart';
+import 'package:wifi_iot/wifi_iot.dart';
 
 import 'access_point_tile.dart';
 
@@ -33,7 +34,19 @@ class HomePage extends ConsumerWidget {
             Column(
                 children: <Widget>[
 
-                    ElevatedButton.icon(
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('Enable/Disable WiFi with settings'),
+                    onPressed: ()  {
+
+                      WiFiForIoTPlugin.setEnabled(
+                          true,
+                          shouldOpenSettings: true);
+
+                    },
+                  ),
+
+                  ElevatedButton.icon(
                     icon: const Icon(Icons.refresh),
                     label: const Text('Scan WiFi access points'),
                     onPressed: () async {
