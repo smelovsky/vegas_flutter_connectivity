@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vegas_flutter_connectivity/player/PlayerPage.dart';
 import 'package:vegas_flutter_connectivity/wifi/wifi_notifier.dart';
 import 'package:vegas_flutter_connectivity/wifi/wifi_scan_get.dart';
 import 'package:wifi_iot/wifi_iot.dart';
@@ -15,7 +16,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(ref),
+      body: buildBody(ref, context),
     );
   }
 
@@ -25,8 +26,7 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-
-  Center buildBody(WidgetRef ref) {
+  Center buildBody(WidgetRef ref, BuildContext context) {
     return Center(
         child: ConstrainedBox(
           constraints: BoxConstraints.tightFor(width: double.infinity, height: double.infinity),
@@ -55,6 +55,19 @@ class HomePage extends ConsumerWidget {
                       getScannedResults(ref);
 
                     },
+                  ),
+
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('Streaming'),
+
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => PlayerPage()
+                      ));
+                    },
+
+
                   ),
 
                   Text(ref.watch(WiFiScanErrorProvider).error),

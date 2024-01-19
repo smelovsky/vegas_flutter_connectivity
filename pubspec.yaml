@@ -42,8 +42,8 @@ dependencies:
   # network connectivity
   connectivity_plus: ^5.0.2
 
-  # WiFi connect
-  #plugin_wifi_connect: ^1.0.2
+  # stream
+  flutter_vlc_player: ^7.4.1
 
 
 dev_dependencies:
